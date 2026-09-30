@@ -4,6 +4,12 @@
 
 > Built as an original MSP/SOC-focused project. It is inspired by the resilience and situational-awareness patterns of modern intelligence dashboards, not a clone of any vendor map or reference repository.
 
+<p align="center">
+  <img src="assets/msp-sentinel-ai-demo.gif" alt="MSP Sentinel AI live multi-tenant SOC situation room demo" width="100%">
+</p>
+
+> **Live visual:** the animation is generated from this project's own SOC design language and demonstrates threat-surface activity, fusion risk, tenant health, source health, and the grounded AI situation brief.
+
 ## Why this exists
 
 Public threat maps are useful for global context, while MSP teams also need to know **which client needs attention, whether telemetry is healthy, what threat intelligence matters, and whether the upstream feeds themselves are trustworthy right now**. MSP Sentinel AI combines those questions into one operator-oriented interface.
