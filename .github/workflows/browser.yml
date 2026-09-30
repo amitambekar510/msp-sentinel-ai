@@ -1,0 +1,29 @@
+name: Browser Matrix
+on: [push, pull_request]
+jobs:
+ browser:
+  runs-on: ubuntu-latest
+  strategy:
+   matrix:
+    browser: [chromium, firefox, webkit]
+  steps:
+   - uses: actions/checkout@v4
+   - uses: actions/setup-python@v5
+     with:
+      python-version: "3.13"
+   - uses: actions/setup-node@v4
+     with:
+      node-version: "22"
+   - run: pip install -e .
+   - run: npm install playwright && npx playwright install --with-deps ${{ matrix.browser }}
+   - run: python -m msp_sentinel.cli --host 127.0.0.1 --port 8000 &
+   - run: |
+      for i in {1..30}; do curl -fsS http://127.0.0.1:8000/api/health && break || sleep 1; done
+      node - <<'NODE'
+      const { ${{ matrix.browser }} }=require('playwright');(async()=>{const b=await ${{ matrix.browser }}.launch();const p=await b.newPage();await p.goto('http://127.0.0.1:8000');await p.getByText('MSP Sentinel').first().waitFor();await p.screenshot({path:'browser-${{ matrix.browser }}.png',fullPage:true});await b.close()})();
+      NODE
+   - uses: actions/upload-artifact@v4
+     if: always()
+     with:
+      name: browser-${{ matrix.browser }}
+      path: browser-${{ matrix.browser }}.png
