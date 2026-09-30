@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MSP Sentinel AI · Global SOC Situation Room</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <header><div><span class="eyebrow">MULTI-TENANT CYBER FUSION</span><h1>MSP Sentinel <b>AI</b></h1></div><div class="live"><i></i> LIVE SITUATION ROOM</div></header>
+  <main>
+    <section class="hero">
+      <div><p class="kicker">GLOBAL MSP / MSSP MONITORING</p><h2>See client health, active cyber intelligence and operational risk in one place.</h2><p>Open-source intelligence fusion with graceful degradation, source health and an optional local AI analyst.</p></div>
+      <div class="score"><span>FUSION RISK</span><strong id="risk">--</strong><small>/100</small></div>
+    </section>
+    <section class="metrics" id="metrics"></section>
+    <section class="grid">
+      <article class="panel map-panel"><div class="panel-title"><span>GLOBAL THREAT SURFACE</span><small id="updated">loading…</small></div><div id="map" class="map"><div class="scan"></div></div></article>
+      <article class="panel"><div class="panel-title"><span>AI SITUATION BRIEF</span><small>grounded</small></div><p id="brief" class="brief">Building situation picture…</p><div class="panel-title second"><span>SOURCE HEALTH</span></div><div id="sources"></div></article>
+    </section>
+    <section class="grid lower">
+      <article class="panel"><div class="panel-title"><span>MSP TENANT HEALTH</span><small>synthetic demo clients</small></div><div id="tenants"></div></article>
+      <article class="panel"><div class="panel-title"><span>PRIORITY INTELLIGENCE</span><small>live + fallback</small></div><div id="signals"></div></article>
+    </section>
+  </main>
+  <footer>MSP Sentinel AI · Open-source defensive situational awareness · Never treat public-feed telemetry as proof of compromise.</footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>
