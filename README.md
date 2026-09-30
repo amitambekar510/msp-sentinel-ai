@@ -28,6 +28,32 @@ Public threat maps are useful for global context, while MSP teams also need to k
 - Docker support and Python 3.12+
 - GitHub CI for Python 3.12/3.13 and a Chromium/Firefox/WebKit browser matrix
 
+## Threat intelligence fusion
+
+MSP Sentinel AI collects multiple public intelligence feeds concurrently, normalizes the observations and correlates them into a single operational risk view. Feed failures remain visible as source-health degradation instead of being interpreted as zero threat activity.
+
+<p align="center">
+  <img src="assets/msp-sentinel-cti-fusion.gif" alt="MSP Sentinel AI threat intelligence fusion pipeline" width="100%">
+</p>
+
+## Multi-tenant MSP operations
+
+The tenant view is designed for MSP/MSSP operations where analysts need to distinguish customer health from global threat context. Synthetic demo tenants illustrate asset coverage, log-source status, open incidents, ingest latency and detection coverage without exposing customer data.
+
+<p align="center">
+  <img src="assets/msp-sentinel-multi-tenant.gif" alt="MSP Sentinel AI multi-tenant MSP monitoring" width="100%">
+</p>
+
+## Grounded AI SOC analyst
+
+The optional AI layer is deliberately downstream of telemetry and CTI collection. It summarizes observed evidence, enrichment and ATT&CK-style context while preserving human review before response actions.
+
+<p align="center">
+  <img src="assets/msp-sentinel-ai-analyst.gif" alt="MSP Sentinel AI grounded SOC analyst workflow" width="100%">
+</p>
+
+> AI-generated analysis is decision support. Public CTI correlation is contextual evidence and must be validated against endpoint, network or SIEM telemetry before incident response.
+
 ## Quick start
 
 ```bash
