@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Literal
 
 from pydantic import BaseModel, Field
@@ -16,7 +16,7 @@ class Signal(BaseModel):
     latitude: float | None = None
     longitude: float | None = None
     reference: str | None = None
-    observed_at: datetime = Field(default_factory=datetime.utcnow)
+    observed_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 class TenantHealth(BaseModel):
