@@ -13,7 +13,7 @@ from msp_sentinel.services.fusion import snapshot
 from msp_sentinel.services.intelligence import investigate
 
 BASE = Path(__file__).parent
-app = FastAPI(title="MSP Sentinel AI", version="0.1.0")
+app = FastAPI(title="MSP Sentinel AI", version="0.2.0")
 app.mount("/static", StaticFiles(directory=BASE / "static"), name="static")
 templates = Jinja2Templates(directory=BASE / "templates")
 
