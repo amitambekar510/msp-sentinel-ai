@@ -19,6 +19,10 @@ Public threat maps are useful for global context, while MSP teams also need to k
 - Multi-tenant MSP/MSSP health view with synthetic demo clients
 - Public CTI fusion: CISA KEV, NVD, URLhaus and Feodo Tracker
 - Global geospatial threat surface for signals that contain location context
+- Explainable tenant exposure scoring with confidence and detection-coverage context
+- IOC/intelligence investigator across the current fused snapshot
+- Entity relationship graph model linking sources, indicators and tenant context
+- Critical/high intelligence watchlist and chronological intelligence timeline
 - Concurrent asynchronous collection with retries and circuit breakers
 - Explicit source-health states and graceful fallback instead of fake zeroes
 - Severity fusion and operational risk scoring
@@ -86,7 +90,9 @@ Then open **http://127.0.0.1:8000**.
 |---|---|
 | `GET /` | Browser Situation Room |
 | `GET /api/health` | Application health |
-| `GET /api/snapshot` | Current fused situation snapshot |
+| `GET /api/snapshot` | Current fused situation snapshot + exposure, graph, timeline and watchlist |
+| `GET /api/exposure` | Tenant exposure estimates and priority watchlist |
+| `GET /api/investigate/{indicator}` | Search an IOC/CVE/domain/title/source in the current snapshot |
 | `GET /api/stream` | Live SSE situation stream |
 
 ## Optional local AI analyst
@@ -99,6 +105,12 @@ MSP_SENTINEL_OLLAMA_MODEL=your-installed-model
 ```
 
 If the model is unavailable, the dashboard automatically falls back to a deterministic situation brief. The AI prompt is explicitly grounded in the collected snapshot and instructed not to invent facts.
+
+## Intelligence & exposure workspace
+
+The v2 workspace extends the Situation Room from global awareness into an MSP-oriented decision path: **public intelligence → normalized signal → tenant exposure context → detection coverage → analyst investigation**. Exposure values are explicitly estimates derived from public CTI and synthetic tenant telemetry; they do not assert that a customer is compromised.
+
+The entity graph is intentionally lightweight and API-friendly. It represents relationships between intelligence sources, indicators and demo tenants so future integrations can replace synthetic context with authorized CMDB, SIEM, EDR or asset-inventory data.
 
 ## Intelligence architecture
 
