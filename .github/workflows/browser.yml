@@ -1,5 +1,8 @@
 name: Browser Matrix
-on: [push, pull_request]
+on:
+ push:
+  branches: [main]
+ pull_request:
 jobs:
  browser:
   runs-on: ubuntu-latest
@@ -7,11 +10,11 @@ jobs:
    matrix:
     browser: [chromium, firefox, webkit]
   steps:
-   - uses: actions/checkout@v4
-   - uses: actions/setup-python@v5
+   - uses: actions/checkout@v7
+   - uses: actions/setup-python@v7
      with:
       python-version: "3.13"
-   - uses: actions/setup-node@v4
+   - uses: actions/setup-node@v7
      with:
       node-version: "22"
    - run: pip install -e .
@@ -22,7 +25,7 @@ jobs:
       node - <<'NODE'
       const { ${{ matrix.browser }} }=require('playwright');(async()=>{const b=await ${{ matrix.browser }}.launch();const p=await b.newPage();await p.goto('http://127.0.0.1:8000');await p.getByText('MSP Sentinel').first().waitFor();await p.screenshot({path:'browser-${{ matrix.browser }}.png',fullPage:true});await b.close()})();
       NODE
-   - uses: actions/upload-artifact@v4
+   - uses: actions/upload-artifact@v7
      if: always()
      with:
       name: browser-${{ matrix.browser }}

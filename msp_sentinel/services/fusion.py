@@ -7,6 +7,7 @@ from msp_sentinel.collectors.demo import signals as demo_signals
 from msp_sentinel.collectors.demo import tenants
 from msp_sentinel.config import settings
 from msp_sentinel.services.resilience import CircuitBreaker, retry
+from msp_sentinel.services.intelligence import build_exposure, build_graph, build_timeline, build_watchlist
 
 COLLECTORS = {"CISA KEV": cisa.collect, "NVD": nvd.collect, "URLhaus": urlhaus.collect, "Feodo Tracker": feodo.collect}
 BREAKERS = {name: CircuitBreaker() for name in COLLECTORS}
@@ -36,10 +37,17 @@ async def snapshot() -> dict:
     severity_weight = {"critical": 20, "high": 10, "medium": 5, "low": 2, "info": 1}
     score = min(100, sum(severity_weight[s.severity] for s in gathered[:20]))
     counts = {level: sum(1 for s in gathered if s.severity == level) for level in severity_weight}
+    signal_rows = [s.model_dump(mode="json") for s in gathered[:80]]
+    tenant_rows = [t.model_dump() for t in tenants()]
     return {
+        "schema_version": "2.0",
         "risk_score": score,
         "counts": counts,
-        "signals": [s.model_dump(mode="json") for s in gathered[:80]],
-        "tenants": [t.model_dump() for t in tenants()],
+        "signals": signal_rows,
+        "tenants": tenant_rows,
+        "exposure": build_exposure(signal_rows, tenant_rows),
+        "timeline": build_timeline(signal_rows),
+        "graph": build_graph(signal_rows, tenant_rows),
+        "watchlist": build_watchlist(signal_rows),
         "sources": health,
     }

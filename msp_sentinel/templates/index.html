@@ -22,6 +22,19 @@
       <article class="panel"><div class="panel-title"><span>MSP TENANT HEALTH</span><small>synthetic demo clients</small></div><div id="tenants"></div></article>
       <article class="panel"><div class="panel-title"><span>PRIORITY INTELLIGENCE</span><small>live + fallback</small></div><div id="signals"></div></article>
     </section>
+    <section class="grid lower v2-grid">
+      <article class="panel"><div class="panel-title"><span>TENANT EXPOSURE</span><small>explainable estimate</small></div><div id="exposure"></div></article>
+      <article class="panel"><div class="panel-title"><span>INTELLIGENCE WATCHLIST</span><small>critical + high</small></div><div id="watchlist"></div></article>
+    </section>
+    <section class="grid lower v2-grid">
+      <article class="panel"><div class="panel-title"><span>LIVE INTELLIGENCE TIMELINE</span><small>latest observations</small></div><div id="timeline"></div></article>
+      <article class="panel"><div class="panel-title"><span>ENTITY RELATIONSHIP GRAPH</span><small>source → indicator → tenant context</small></div><div id="graph" class="graph"></div></article>
+    </section>
+    <section class="panel investigator">
+      <div class="panel-title"><span>IOC / INTELLIGENCE INVESTIGATOR</span><small>current snapshot only</small></div>
+      <form id="investigate-form"><input id="indicator" maxlength="200" placeholder="Search IP, domain, CVE, title or source…" autocomplete="off"><button type="submit">INVESTIGATE</button></form>
+      <pre id="investigation">Enter an indicator to search the current fused snapshot. Corroborate findings with client telemetry before response.</pre>
+    </section>
   </main>
   <footer>MSP Sentinel AI · Open-source defensive situational awareness · Never treat public-feed telemetry as proof of compromise.</footer>
   <script src="/static/app.js"></script>
