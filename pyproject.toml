@@ -16,6 +16,7 @@ dev=["pytest>=8,<9"]
 msp-sentinel="msp_sentinel.cli:main"
 [tool.pytest.ini_options]
 testpaths=["tests"]
+pythonpath=["."]
 [tool.setuptools.packages.find]
 include=["msp_sentinel*"]
 exclude=["assets*","tests*"]
