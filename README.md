@@ -1,4 +1,49 @@
-# MSP Sentinel AI
+<div align="center">
+
+<img src="assets/msp-v3-hero.svg" width="100%" alt="MSP Sentinel AI 3.0 project banner">
+
+# MSP Sentinel AI 3.0
+
+**AI-guided infrastructure intake · Public CTI fusion · Multi-tenant synthetic SOC demonstration**
+
+<img src="assets/msp-sentinel-ai-demo.gif" width="100%" alt="Existing animated MSP Sentinel AI dashboard walkthrough">
+
+<img src="assets/msp-v3-architecture.svg" width="100%" alt="Public CTI collection, fusion, synthetic tenants and analyst briefing architecture">
+
+</div>
+
+## 🤖 AI-ready: one question at a time
+
+Give an assistant capable of reading GitHub files this prompt:
+
+```text
+Read AGENTS.md and AI_INSTRUCTIONS.md from this repository.
+Ask me one question at a time, starting with which SIEM I use.
+Learn my MSP tenant count, telemetry, intelligence feeds, deployment
+environment, approved local AI, security controls and applicable
+frameworks. Produce an infrastructure-specific adoption plan,
+identifying what is already implemented versus missing for production.
+Do not ask for secrets or assume customer integrations are live.
+```
+
+**URL sharing alone does not activate AI guidance on every platform.** The repository provides prompts for compatible assistants; it does not contain a hosted conversational onboarding service.
+
+### Generate an offline infrastructure plan
+
+```bash
+python scripts/build_deployment_plan.py --input examples/msp-environment.sample.json --output /tmp/msp-plan.md
+```
+
+This creates a planning document only; it does not call the application or collect customer data.
+
+### Compliance and security
+
+The [12-reference applicability matrix](docs/compliance-applicability.md) includes the requested regulatory and standards context, with qualifications. It is **not** a compliance certificate. Existing tenant data are synthetic, and production requires tenant authorization, identity, isolation, storage, audit logging and connector validation.
+
+---
+
+## Existing project features and instructions
+
 
 **Open-source multi-tenant MSP/MSSP Cyber Situation Room** — a Python-first browser dashboard that fuses public cyber threat intelligence, tenant operational health and optional local AI analysis into one live defensive view.
 
@@ -108,7 +153,7 @@ If the model is unavailable, the dashboard automatically falls back to a determi
 
 ## Intelligence & exposure workspace
 
-The v2 workspace extends the Situation Room from global awareness into an MSP-oriented decision path: **public intelligence → normalized signal → tenant exposure context → detection coverage → analyst investigation**. Exposure values are explicitly estimates derived from public CTI and synthetic tenant telemetry; they do not assert that a customer is compromised.
+The existing workspace extends the Situation Room from global awareness into an MSP-oriented decision path: **public intelligence → normalized signal → tenant exposure context → detection coverage → analyst investigation**. Exposure values are explicitly estimates derived from public CTI and synthetic tenant telemetry; they do not assert that a customer is compromised.
 
 The entity graph is intentionally lightweight and API-friendly. It represents relationships between intelligence sources, indicators and demo tenants so future integrations can replace synthetic context with authorized CMDB, SIEM, EDR or asset-inventory data.
 
