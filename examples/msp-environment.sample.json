@@ -1,0 +1,17 @@
+{
+  "siem": "ELK lab",
+  "tenant_count": 3,
+  "telemetry": [
+    "firewall logs",
+    "Windows events"
+  ],
+  "intelligence": [
+    "CISA KEV",
+    "NVD"
+  ],
+  "deployment": "local demo",
+  "ai_mode": "deterministic fallback",
+  "retention": "synthetic data",
+  "priority": "ingest health",
+  "sector": "financial services"
+}
