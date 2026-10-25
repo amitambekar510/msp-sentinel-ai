@@ -1,4 +1,4 @@
-# MSP Sentinel AI 3.0 — AI-guided onboarding
+# MSP Sentinel AI 3.1 — AI-guided onboarding
 
 Ask one question at a time. Begin: **Which SIEM or SOC platform do you currently use: Elastic, Microsoft Sentinel, Splunk, another platform or none?**
 

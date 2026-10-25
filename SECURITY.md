@@ -9,3 +9,10 @@ MSP Sentinel AI is a defensive situational-awareness project.
 - The demo tenant records are synthetic.
 
 Supported branch: `main`.
+
+## Wazuh 3.1 boundary
+
+The optional private Wazuh API uses per-tenant bearer tokens and explicit agent
+assignments. It is separate from public CTI routes, SSE and AI. Synthetic tests
+verify specific safeguards; they do not certify production tenant isolation.
+See [the verified boundary and deployment limitations](docs/wazuh-3.1.md).

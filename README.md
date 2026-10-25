@@ -2,7 +2,7 @@
 
 <img src="assets/msp-v3-hero.svg" width="100%" alt="MSP Sentinel AI 3.0 project banner">
 
-# MSP Sentinel AI 3.0
+# MSP Sentinel AI 3.1
 
 **AI-guided infrastructure intake · Public CTI fusion · Multi-tenant synthetic SOC demonstration**
 
@@ -11,6 +11,18 @@
 <img src="assets/msp-v3-architecture.svg" width="100%" alt="Public CTI collection, fusion, synthetic tenants and analyst briefing architecture">
 
 </div>
+
+## New in 3.1
+
+- Optional read-only Wazuh indexer alert search through an authenticated tenant API
+- Explicit agent assignments, scoped queries, result validation and private-response cache safeguards
+- Synthetic integration tests, a local HTTPS contract test and expanded three-browser CI verification
+- Existing public dashboard, synthetic demos, planner, CTI, SSE and local AI remain available
+
+Read [connector setup, verified safeguards and limitations](docs/wazuh-3.1.md).
+Private telemetry is kept separate from public routes and AI. Synthetic verification
+**does not establish production-ready tenant isolation** or validate a live Wazuh deployment.
+The existing visual assets below illustrate the prior dashboard design.
 
 ## 🤖 AI-ready: one question at a time
 
@@ -139,6 +151,7 @@ Then open **http://127.0.0.1:8000**.
 | `GET /api/exposure` | Tenant exposure estimates and priority watchlist |
 | `GET /api/investigate/{indicator}` | Search an IOC/CVE/domain/title/source in the current snapshot |
 | `GET /api/stream` | Live SSE situation stream |
+| `GET /api/tenants/{tenant_id}/wazuh` | Authenticated, scoped Wazuh indexer alert search (optional) |
 
 ## Optional local AI analyst
 
@@ -187,7 +200,7 @@ pytest -q
 python -m compileall -q msp_sentinel
 ```
 
-GitHub Actions tests Python 3.12 and 3.13. A separate browser workflow starts the application and smoke-tests the dashboard in **Chromium, Firefox and WebKit**, saving screenshots as CI artifacts.
+GitHub Actions tests Python 3.12 and 3.13. A separate browser workflow starts an offline synthetic fixture and verifies dashboard behavior, investigation, SSE and tenant access in **Chromium, Firefox and WebKit**, saving screenshots as CI artifacts.
 
 ## Security and limitations
 

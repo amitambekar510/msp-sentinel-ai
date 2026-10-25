@@ -1,19 +1,28 @@
 name: Python CI
 on:
- push:
-  branches: [main]
- pull_request:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
 jobs:
- test:
-  strategy:
-   matrix:
-    python-version: ["3.12","3.13"]
-  runs-on: ubuntu-latest
-  steps:
-   - uses: actions/checkout@v7
-   - uses: actions/setup-python@v7
-     with:
-      python-version: ${{ matrix.python-version }}
-   - run: pip install -e ".[dev]"
-   - run: python -m compileall -q msp_sentinel
-   - run: pytest -q
+  test:
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.13"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[dev]"
+      - run: python -m compileall -q msp_sentinel
+      - run: pytest -q --junitxml=test-results/python.xml
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: python-${{ matrix.python-version }}
+          path: test-results/python.xml
