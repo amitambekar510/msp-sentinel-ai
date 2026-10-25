@@ -1,14 +1,14 @@
 <div align="center">
 
-<img src="assets/msp-v3-hero.svg" width="100%" alt="MSP Sentinel AI 3.0 project banner">
+<img src="assets/msp-v3-hero.svg" width="100%" alt="MSP Sentinel AI 3.1: public intelligence, private Wazuh telemetry and synthetic safeguards">
 
 # MSP Sentinel AI 3.1
 
-**AI-guided infrastructure intake · Public CTI fusion · Multi-tenant synthetic SOC demonstration**
+**Public CTI fusion · Read-only Wazuh connector · Verified synthetic safeguards**
 
-<img src="assets/msp-sentinel-ai-demo.gif" width="100%" alt="Existing animated MSP Sentinel AI dashboard walkthrough">
+<img src="assets/msp-sentinel-ai-demo.gif" width="100%" alt="MSP Sentinel AI 3.1 synthetic dashboard walkthrough: source health, tenant context and investigation">
 
-<img src="assets/msp-v3-architecture.svg" width="100%" alt="Public CTI collection, fusion, synthetic tenants and analyst briefing architecture">
+<img src="assets/msp-v3-architecture.svg" width="100%" alt="Version 3.1 architecture with separate public intelligence and authenticated private Wazuh data paths">
 
 </div>
 
@@ -22,7 +22,7 @@
 Read [connector setup, verified safeguards and limitations](docs/wazuh-3.1.md).
 Private telemetry is kept separate from public routes and AI. Synthetic verification
 **does not establish production-ready tenant isolation** or validate a live Wazuh deployment.
-The existing visual assets below illustrate the prior dashboard design.
+All visuals reflect 3.1 and use synthetic data. The Wazuh walkthrough captures scoped API responses and cross-tenant denial; production isolation remains unverified.
 
 ## 🤖 AI-ready: one question at a time
 
@@ -62,10 +62,10 @@ The [12-reference applicability matrix](docs/compliance-applicability.md) includ
 > Built as an original MSP/SOC-focused project. It is inspired by the resilience and situational-awareness patterns of modern intelligence dashboards, not a clone of any vendor map or reference repository.
 
 <p align="center">
-  <img src="assets/msp-sentinel-ai-demo.gif" alt="MSP Sentinel AI live multi-tenant SOC situation room demo" width="100%">
+  <img src="assets/msp-sentinel-dashboard.png" alt="MSP Sentinel AI 3.1 dashboard with fictional tenants and synthetic threat intelligence" width="100%">
 </p>
 
-> **Live visual:** the animation is generated from this project's own SOC design language and demonstrates threat-surface activity, fusion risk, tenant health, source health, and the grounded AI situation brief.
+> **Synthetic dashboard capture:** shows threat-surface activity, fusion risk, fictional tenant health, source health and the grounded situation brief. [Media sources and regeneration](assets/README.md).
 
 ## Why this exists
 
@@ -94,7 +94,7 @@ Public threat maps are useful for global context, while MSP teams also need to k
 MSP Sentinel AI collects multiple public intelligence feeds concurrently, normalizes the observations and correlates them into a single operational risk view. Feed failures remain visible as source-health degradation instead of being interpreted as zero threat activity.
 
 <p align="center">
-  <img src="assets/msp-sentinel-cti-fusion.gif" alt="MSP Sentinel AI threat intelligence fusion pipeline" width="100%">
+  <img src="assets/msp-sentinel-cti-fusion.gif" alt="Synthetic CTI walkthrough showing normalized signals, source health and evidence context" width="100%">
 </p>
 
 ## Multi-tenant MSP operations
@@ -102,15 +102,29 @@ MSP Sentinel AI collects multiple public intelligence feeds concurrently, normal
 The tenant view is designed for MSP/MSSP operations where analysts need to distinguish customer health from global threat context. Synthetic demo tenants illustrate asset coverage, log-source status, open incidents, ingest latency and detection coverage without exposing customer data.
 
 <p align="center">
-  <img src="assets/msp-sentinel-multi-tenant.gif" alt="MSP Sentinel AI multi-tenant MSP monitoring" width="100%">
+  <img src="assets/msp-sentinel-multi-tenant.gif" alt="Fictional tenant health and exposure estimates with a production verification reminder" width="100%">
 </p>
+
+## Read-only Wazuh connector
+
+The optional tenant API uses explicit agent assignments, tenant-bound bearer tokens
+and validated read-only indexer searches. This walkthrough captures the real connector
+against synthetic upstream responses: tenant A receives agent 001, while its token is
+denied access to tenant B. Private Wazuh alerts stay separate from public CTI and AI.
+
+<p align="center">
+  <img src="assets/msp-sentinel-wazuh.gif" alt="Synthetic Wazuh API walkthrough: scoped HTTP 200 response, cross-tenant HTTP 403 denial and public/private data separation" width="100%">
+</p>
+
+Synthetic checks verify specific safeguards. Production isolation and live upstream
+permissions still require deployment-specific validation. See [setup and limitations](docs/wazuh-3.1.md).
 
 ## Grounded AI SOC analyst
 
 The optional AI layer is deliberately downstream of telemetry and CTI collection. It summarizes observed evidence, enrichment and ATT&CK-style context while preserving human review before response actions.
 
 <p align="center">
-  <img src="assets/msp-sentinel-ai-analyst.gif" alt="MSP Sentinel AI grounded SOC analyst workflow" width="100%">
+  <img src="assets/msp-sentinel-ai-analyst.gif" alt="Grounded synthetic brief and investigation workflow; private Wazuh alerts remain separate" width="100%">
 </p>
 
 > AI-generated analysis is decision support. Public CTI correlation is contextual evidence and must be validated against endpoint, network or SIEM telemetry before incident response.

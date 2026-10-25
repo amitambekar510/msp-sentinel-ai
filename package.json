@@ -1,6 +1,11 @@
 {
   "name": "msp-sentinel-browser-verification",
   "private": true,
-  "scripts": {"test:browser": "playwright test"},
-  "devDependencies": {"@playwright/test": "1.56.1"}
+  "scripts": {
+    "test:browser": "playwright test",
+    "render:visuals": "node scripts/render_visuals.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
 }
