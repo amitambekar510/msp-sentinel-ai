@@ -5,3 +5,7 @@ __pycache__/
 .env
 .DS_Store
 coverage.xml
+*.egg-info/
+node_modules/
+playwright-report/
+test-results/
